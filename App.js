@@ -581,7 +581,7 @@
 //   return (
 //     <View>
 //       <View style={{marginTop:15,}}>
-//         <TextInput style={styles.TextInput} placeholder='search' onChangeText={(text)=>search(text)}/>  
+//         <TextInput style={styles.TextInput} placeholder='search' onChangeText={(text)=>search(text)}/>
 //       </View>
 //       {
 //         data.length ? data.map((item,id)=><View key={id}><Text>{item.name}</Text></View>):null
@@ -610,22 +610,70 @@
 // //make this component available to the app
 // export default MyComponent;
 //import liraries
-import React, { Component,useRef } from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+// import React, { Component,useRef } from 'react';
+// import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 
+// // create a component
+// const MyComponent = () => {
+//   const input = useRef();
+//   const updateInput = ()=>{
+//     console.warn("call");
+//     input.current.focus()
+//   }
+//   return (
+//     <View style={styles.container}>
+//       <Text>MyComponent</Text>
+//       <TextInput ref={input} placeholder='First Name' style={styles.TextInput}/>
+//       <TextInput placeholder='Last Name' style={styles.TextInput}/>
+//       <Button title='Login' onPress={updateInput}/>
+//     </View>
+//   );
+// };
+
+// // define your styles
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     //backgroundColor: '#2c3e50',
+//   },
+//   TextInput:{
+//     borderWidth:1,
+//     padding:10,
+//     borderRadius:10,
+//     width:300,
+//     marginBottom:10,
+//   }
+// });
+
+// //make this component available to the app
+// export default MyComponent;
+
+//import liraries
+import React, {Component} from 'react';
+import {View, Text, StyleSheet, Button} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // create a component
 const MyComponent = () => {
-  const input = useRef();
-  const updateInput = ()=>{
-    console.warn("call");
-    input.current.focus()
+
+  const setData =async ()=>{
+    await AsyncStorage.setItem("name", "koushik mondal")
   }
+
+  const getData =async ()=>{
+    const name=  await AsyncStorage.getItem("name");
+    console.warn(name)
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>MyComponent</Text>
-      <TextInput ref={input} placeholder='First Name' style={styles.TextInput}/>
-      <TextInput placeholder='Last Name' style={styles.TextInput}/>
-      <Button title='Login' onPress={updateInput}/>
+    <View >
+      <Text style={{fontSize:30,}}>My name is : </Text>
+     
+        <Button title="setData" onPress={setData}/>
+        <View style={{marginBottom: 15}}></View>
+        <Button title="getData"  onPress={getData}/>
+      
     </View>
   );
 };
@@ -636,15 +684,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    //backgroundColor: '#2c3e50',
+    // backgroundColor: '#2c3e50',
   },
-  TextInput:{
-    borderWidth:1,
-    padding:10,
-    borderRadius:10,
-    width:300,
-    marginBottom:10,
-  }
 });
 
 //make this component available to the app
