@@ -560,32 +560,72 @@
 // export default MyComponent;
 
 //import liraries
-import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+// import React, { Component, useState } from 'react';
+// import { View, Text, StyleSheet, TextInput } from 'react-native';
+
+// // create a component
+// const MyComponent = () => {
+
+//   const [data,setData]= useState([]);
+
+//   const search =async (text)=>{
+//     //console.warn(text);
+//     const url = `http://192.168.111.1:3000/user?name=${text}`;
+//     let result = await fetch(url);
+//     result =  await result.json();
+//     //console.warn(result);
+//     if (result){
+//     setData(result)
+//     }
+//   }
+//   return (
+//     <View>
+//       <View style={{marginTop:15,}}>
+//         <TextInput style={styles.TextInput} placeholder='search' onChangeText={(text)=>search(text)}/>  
+//       </View>
+//       {
+//         data.length ? data.map((item,id)=><View key={id}><Text>{item.name}</Text></View>):null
+//       }
+//     </View>
+//   );
+// };
+
+// // define your styles
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     //backgroundColor: '#2c3e50',
+//   },
+//   TextInput:{
+//     borderColor:'black',
+//     borderWidth:1,
+//     borderRadius:15,
+//     margin:10,
+//     padding:10,
+//   }
+// });
+
+// //make this component available to the app
+// export default MyComponent;
+//import liraries
+import React, { Component,useRef } from 'react';
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 
 // create a component
 const MyComponent = () => {
-
-  const [data,setData]= useState([]);
-
-  const search =async (text)=>{
-    //console.warn(text);
-    const url = `http://192.168.111.1:3000/user?name=${text}`;
-    let result = await fetch(url);
-    result =  await result.json();
-    //console.warn(result);
-    if (result){
-    setData(result)
-    }
+  const input = useRef();
+  const updateInput = ()=>{
+    console.warn("call");
+    input.current.focus()
   }
   return (
-    <View>
-      <View style={{marginTop:15,}}>
-        <TextInput style={styles.TextInput} placeholder='search' onChangeText={(text)=>search(text)}/>  
-      </View>
-      {
-        data.length ? data.map((item,id)=><View key={id}><Text>{item.name}</Text></View>):null
-      }
+    <View style={styles.container}>
+      <Text>MyComponent</Text>
+      <TextInput ref={input} placeholder='First Name' style={styles.TextInput}/>
+      <TextInput placeholder='Last Name' style={styles.TextInput}/>
+      <Button title='Login' onPress={updateInput}/>
     </View>
   );
 };
@@ -599,11 +639,11 @@ const styles = StyleSheet.create({
     //backgroundColor: '#2c3e50',
   },
   TextInput:{
-    borderColor:'black',
     borderWidth:1,
-    borderRadius:15,
-    margin:10,
     padding:10,
+    borderRadius:10,
+    width:300,
+    marginBottom:10,
   }
 });
 
