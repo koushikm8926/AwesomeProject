@@ -651,29 +651,86 @@
 // export default MyComponent;
 
 //import liraries
+// import React, {Component} from 'react';
+// import {View, Text, StyleSheet, Button} from 'react-native';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+// // create a component
+// const MyComponent = () => {
+
+//   const setData =async ()=>{
+//     await AsyncStorage.setItem("name", "koushik mondal")
+//   }
+
+//   const getData =async ()=>{
+//     const name=  await AsyncStorage.getItem("name");
+//     console.warn(name)
+//   }
+
+//   return (
+//     <View >
+//       <Text style={{fontSize:30,}}>My name is : </Text>
+
+//         <Button title="setData" onPress={setData}/>
+//         <View style={{marginBottom: 15}}></View>
+//         <Button title="getData"  onPress={getData}/>
+
+//     </View>
+//   );
+// };
+
+// // define your styles
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     // backgroundColor: '#2c3e50',
+//   },
+// });
+
+// //make this component available to the app
+// export default MyComponent;
+
+//import liraries
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {View, Text, StyleSheet, Image, Button, ScrollView} from 'react-native';
+import Header from './Header';
+import Product from './Product';
+
 // create a component
 const MyComponent = () => {
-
-  const setData =async ()=>{
-    await AsyncStorage.setItem("name", "koushik mondal")
-  }
-
-  const getData =async ()=>{
-    const name=  await AsyncStorage.getItem("name");
-    console.warn(name)
-  }
-
+  const products = [
+    {
+      name: 'samsung',
+      color: 'black',
+      price: 12000,
+      image:'https://media.istockphoto.com/id/1318420912/vector/mock-up-screen-phone.jpg?s=612x612&w=0&k=20&c=z7RTcOE_vnT9eRcSEQhw0EVVRDb9JdDPaApfyO5nFxM='
+    },
+    {
+      name: 'apple',
+      color: 'black',
+      price: 12000,
+      image:'https://media.istockphoto.com/id/1318420912/vector/mock-up-screen-phone.jpg?s=612x612&w=0&k=20&c=z7RTcOE_vnT9eRcSEQhw0EVVRDb9JdDPaApfyO5nFxM='
+    },
+    {
+      name: 'Nokia',
+      color: 'black',
+      price: 12000,
+      image:'https://media.istockphoto.com/id/1318420912/vector/mock-up-screen-phone.jpg?s=612x612&w=0&k=20&c=z7RTcOE_vnT9eRcSEQhw0EVVRDb9JdDPaApfyO5nFxM='
+    },
+    {
+      name: 'Vivo',
+      color: 'black',
+      price: 12000,
+      image:'https://media.istockphoto.com/id/1318420912/vector/mock-up-screen-phone.jpg?s=612x612&w=0&k=20&c=z7RTcOE_vnT9eRcSEQhw0EVVRDb9JdDPaApfyO5nFxM='
+    },
+  ];
   return (
-    <View >
-      <Text style={{fontSize:30,}}>My name is : </Text>
-     
-        <Button title="setData" onPress={setData}/>
-        <View style={{marginBottom: 15}}></View>
-        <Button title="getData"  onPress={getData}/>
-      
+    <View>
+      <Header />
+      <ScrollView>
+      {products.map((item) => (<Product  item={item}/>))}
+      </ScrollView>
     </View>
   );
 };
@@ -684,7 +741,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: '#2c3e50',
+    //backgroundColor: '#2c3e50',
   },
 });
 
