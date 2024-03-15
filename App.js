@@ -729,7 +729,7 @@ const MyComponent = () => {
     <View>
       <Header />
       <ScrollView>
-      {products.map((item) => (<Product  item={item}/>))}
+      {products.map((item,id) => (<Product key={id} item={item}/>))}
       </ScrollView>
     </View>
   );
